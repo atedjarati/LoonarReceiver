@@ -33,9 +33,8 @@ const int   GFSK_CS =           10;
 /***********************************************************************************************************************************************************************/
 
 /********** CONSTANTS **********/  
-#define MESSAGE_LENGTH 20
-#define NPAR 40
-const uint8_t  BUF_SIZE =                                        100;                          // Data array size for telemetry in bytes. 
-const double   FREQ =                                            145.0;                        // Center frequency for radio in MHz. 
+const int      MESSAGE_LENGTH =         60;                           // Message length in bytes. 
+const uint8_t  BUF_SIZE =               100;                          // Data array size for telemetry in bytes. 
+const double   FREQ =                   145.0;                        // Center frequency for radio in MHz. 
 
 #endif /* Configuration_h */

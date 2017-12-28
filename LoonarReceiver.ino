@@ -29,7 +29,7 @@ Loonar Technologies Receiver Code
 /***********************************************************************************************************************************************************************/
 
 /********** OBJECTS **********/
-RH_RF24                  rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);
+RH_RF24   rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);
 
 /***********************************************************************************************************************************************************************/
 
@@ -46,11 +46,11 @@ RH_RF24                  rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);
 --------------------------------------------------------------------------------------------------------------*/
 void setup()
 {
-  setPinmodes();                  // Initialize all the pinModes for every pin (i.e. input, output, etc).
-  RadioOff();                     // Shut off power to the radio module. 
-  setupSPI();                     // Initialize the Serial Peripheral Interface with the Radio.
-  RadioOn();                      // Deliver power to the radio module.
-  initializeRadio();              // Initialize and set up all radio parameters (frequency, data rate, etc). 
+  setPinmodes();            // Initialize all the pinModes for every pin (i.e. input, output, etc).
+  RadioOff();               // Shut off power to the radio module. 
+  setupSPI();               // Initialize the Serial Peripheral Interface with the Radio.
+  RadioOn();                // Deliver power to the radio module.
+  initializeRadio();        // Initialize and set up all radio parameters (frequency, data rate, etc). 
 }
 
 
@@ -66,18 +66,18 @@ void setup()
 --------------------------------------------------------------------------------------------------------------*/
 void loop() 
 {
-  uint8_t data[60] = {0};
-  uint8_t leng = MESSAGE_LENGTH + NPAR;
-  boolean tru = rf24.recv(data, &leng);
-  if (tru) 
+  uint8_t data[MESSAGE_LENGTH] = {0};
+  uint8_t leng = MESSAGE_LENGTH;
+  if (rf24.recv(data, &leng))
   {
     uint8_t lastRssi = (uint8_t)rf24.lastRssi();
     Serial.print("Got stuff at RSSI ");
     Serial.println(lastRssi);
-    for (int i = 0; i < 60; i++)
+    for (int i = 0; i < MESSAGE_LENGTH; i++)
     { 
       Serial.print((char)data[i]); 
     }
+    Serial.println();
   }
 }
 
@@ -143,7 +143,7 @@ void RadioOn()
 void setupSPI()
 {
   SPI.setDataMode(SPI_MODE0);
-  SPI.setClockDivider(SPI_CLOCK_DIV2);  // Setting clock speed to 8mhz, as 10 is the max for the rfm22
+  SPI.setClockDivider(SPI_CLOCK_DIV2);  // Setting clock speed to 8 MHz, as 10 MHz is the max for the radio module. 
   SPI.begin();
   delay(3000); 
 }
@@ -161,10 +161,10 @@ void setupSPI()
 --------------------------------------------------------------------------------------------------------------*/
 void initializeRadio()
 {
-  rf24.init(MESSAGE_LENGTH + NPAR);
-  uint8_t buf[8];
-  rf24.command(RH_RF24_CMD_PART_INFO, 0, 0, buf, sizeof(buf));
-  rf24.setFrequency(FREQ);
-  rf24.setModemConfig(rf24.GFSK_Rb0_5Fd1);   // GFSK 500 bps
-  rf24.setTxPower(0x7f);  
+  rf24.init(MESSAGE_LENGTH);                              // Initialize the RF module.
+  uint8_t buf[8];                                                // Create a 8 byte buffer.
+  rf24.command(RH_RF24_CMD_PART_INFO, 0, 0, buf, sizeof(buf));   // Send the command to initialize the module.
+  rf24.setFrequency(FREQ);                                       // Set the center RF frequency 
+  rf24.setModemConfig(rf24.GFSK_Rb0_5Fd1);                       // Set the modulation scheme to GFSK and datarate to 500 bps  
+  rf24.setTxPower(0x7f);                                         // Set the transmit power to +20 dBm (100mW). 
 }
