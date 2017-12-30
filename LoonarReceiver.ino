@@ -21,15 +21,15 @@ Loonar Technologies Receiver Code
 /***********************************************************************************************************************************************************************/
 
 /********* LIBRARIES *********/
-#include <SPI.h>
-#include <RH_RF24.h>
-#include "Configuration.h"
+#include <SPI.h>            // Serial Peripheral Interface Library
+#include <RH_RF24.h>        // Radio Module Library
+#include "Configuration.h"  // Loonar Technologies Configuration File
 
 
 /***********************************************************************************************************************************************************************/
 
 /********** OBJECTS **********/
-RH_RF24   rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);
+RH_RF24   rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);  // Radio module object
 
 /***********************************************************************************************************************************************************************/
 
