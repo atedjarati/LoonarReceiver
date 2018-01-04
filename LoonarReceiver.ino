@@ -22,7 +22,7 @@ Loonar Technologies Receiver Code
 
 /********* LIBRARIES *********/
 #include <SPI.h>            // Serial Peripheral Interface Library
-#include <RH_RF24.h>        // Radio Module Library
+#include "RH_RF24.h"        // Radio Module Library
 #include "Configuration.h"  // Loonar Technologies Configuration File
 
 
@@ -127,6 +127,7 @@ void RadioOff()
 void RadioOn()
 {
   digitalWrite(GFSK_GATE, LOW);
+  delay(1000);
 }
 
 
@@ -161,10 +162,13 @@ void setupSPI()
 --------------------------------------------------------------------------------------------------------------*/
 void initializeRadio()
 {
-  rf24.init(MESSAGE_LENGTH);                              // Initialize the RF module.
-  uint8_t buf[8];                                                // Create a 8 byte buffer.
-  rf24.command(RH_RF24_CMD_PART_INFO, 0, 0, buf, sizeof(buf));   // Send the command to initialize the module.
-  rf24.setFrequency(FREQ);                                       // Set the center RF frequency 
-  rf24.setModemConfig(rf24.GFSK_Rb0_5Fd1);                       // Set the modulation scheme to GFSK and datarate to 500 bps  
-  rf24.setTxPower(0x7f);                                         // Set the transmit power to +20 dBm (100mW). 
+  boolean ok = rf24.init(MESSAGE_LENGTH);                                    // Initialize the RF module.
+  if (!ok) Serial.println("Unplug and replug the Loonar Receiver Board");    // Check to see if initialization was successful.
+  rf24.setFrequency(FREQ);                                                   // Set the center RF frequency.
+//rf24.setTxPower(0x7f);                                                     // Set the transmit power to +20 dBm (100mW). 
 }
+
+
+
+
+
