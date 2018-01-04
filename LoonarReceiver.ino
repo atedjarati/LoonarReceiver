@@ -21,9 +21,9 @@ Loonar Technologies Receiver Code
 /***********************************************************************************************************************************************************************/
 
 /********* LIBRARIES *********/
-#include <SPI.h>            // Serial Peripheral Interface Library
-#include "RH_RF24.h"        // Radio Module Library
-#include "Configuration.h"  // Loonar Technologies Configuration File
+#include <SPI.h>                      // Serial Peripheral Interface Library
+#include "RHRF24.h"                   // Radio Module Library
+#include "Configuration_Receiver.h"   // Loonar Technologies Configuration File
 
 
 /***********************************************************************************************************************************************************************/
