@@ -87,6 +87,21 @@ void loop()
     }
     Serial.println();
   }
+  delay(1000);
+  char dat[100] = {0};
+  dat[0] = 'L';
+  dat[1] = 'a';
+  dat[2] = 'n';
+  dat[3] = 'd';
+  dat[4] = 'e';
+  dat[5] = 'd';
+  for (int i = 0; i < MESSAGE_LENGTH; i++)
+  {
+    //dat[i] = 'i';
+    data[i] = dat[i];
+  }
+  rf24.send(data,leng);
+  rf24.waitPacketSent(); 
 }
 
 /*--------------------------------------------------------------------------------------------------------------
@@ -173,7 +188,7 @@ void initializeRadio()
   boolean ok = rf24.init(MESSAGE_LENGTH);                                    // Initialize the RF module.
   if (!ok) Serial.println("Unplug and replug the Loonar Receiver Board");    // Check to see if initialization was successful.
   rf24.setFrequency(FREQ);                                                   // Set the center RF frequency.
-//rf24.setTxPower(0x7f);                                                     // Set the transmit power to +20 dBm (100mW). 
+  //rf24.setTxPower(0x7f);                                                     // Set the transmit power to +20 dBm (100mW). 
 }
 
 

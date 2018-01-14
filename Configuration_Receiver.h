@@ -29,19 +29,29 @@ Copyright 2018 Loonar Technologies, LLC
 #define Configuration_h
 
 /********** PINOUT **********/
-const int   GFSK_SDN =          6;
-const int   GFSK_IRQ =          14;
-const int   GFSK_GATE =         5;
+//const int   GFSK_SDN =          6;
+//const int   GFSK_IRQ =          14;
+//const int   GFSK_GATE =         5;
+//const int   GFSK_GPIO_0 =       21;
+//const int   GFSK_GPIO_1 =       20;
+//const int   GFSK_GPIO_2 =       7;
+//const int   GFSK_GPIO_3 =       8;
+//const int   GFSK_CS =           10;
+
+const int   GFSK_SDN =          19;
+const int   GFSK_IRQ =          16;
+const int   GFSK_GATE =         22;
 const int   GFSK_GPIO_0 =       21;
 const int   GFSK_GPIO_1 =       20;
-const int   GFSK_GPIO_2 =       7;
-const int   GFSK_GPIO_3 =       8;
-const int   GFSK_CS =           10;
+const int   GFSK_GPIO_2 =       17;
+const int   GFSK_GPIO_3 =       18;
+const int   GFSK_CS =           15;
+
 
 /***********************************************************************************************************************************************************************/
 
 /********** CONSTANTS **********/  
-const int      MESSAGE_LENGTH =         60;                           // Message length in bytes. 
+const int      MESSAGE_LENGTH =         100;                           // Message length in bytes. 
 const double   FREQ =                   145.0;                        // Center frequency for radio in MHz. 
 
 #endif /* Configuration_h */
