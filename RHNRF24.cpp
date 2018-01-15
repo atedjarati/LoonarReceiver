@@ -25,7 +25,7 @@ bool RH_NRF24::init()
     // Initialise the slave select pin
     pinMode(_chipEnablePin, OUTPUT);
     digitalWrite(_chipEnablePin, LOW);
-  
+  Serial.println("Loonar tech file");
     // Clear interrupts
     spiWriteRegister(RH_NRF24_REG_07_STATUS, RH_NRF24_RX_DR | RH_NRF24_TX_DS | RH_NRF24_MAX_RT);
     // Enable dynamic payload length on all pipes

@@ -54,11 +54,16 @@ RH_RF24   rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);  // Radio module object
 --------------------------------------------------------------------------------------------------------------*/
 void setup()
 {
+  delay(1000);
+  Serial.println("Starting");
   setPinmodes();            // Initialize all the pinModes for every pin (i.e. input, output, etc).
+  Serial.println("After pinmode");
   RadioOff();               // Shut off power to the radio module. 
-  setupSPI();               // Initialize the Serial Peripheral Interface with the Radio.
+  Serial.println("After radio off");
   RadioOn();                // Deliver power to the radio module.
+  Serial.println("After radio on");
   initializeRadio();        // Initialize and set up all radio parameters (frequency, data rate, etc). 
+  Serial.println("After init radio");
 }
 
 
@@ -117,7 +122,7 @@ void loop()
 void setPinmodes()
 {
   pinMode(GFSK_GATE, OUTPUT);
-  pinMode(GFSK_SDN,OUTPUT);
+  pinMode(GFSK_SDN, OUTPUT);
 }
 
 
@@ -154,23 +159,6 @@ void RadioOn()
 }
 
 
-/*--------------------------------------------------------------------------------------------------------------
-   Function:
-     setupSPI
-   Parameters:
-     None
-   Returns:
-     Nothing
-   Purpose: 
-     Configures the serial peripheral interface to the radio module. 
---------------------------------------------------------------------------------------------------------------*/
-void setupSPI()
-{
-  SPI.setDataMode(SPI_MODE0);
-  SPI.setClockDivider(SPI_CLOCK_DIV2);  // Setting clock speed to 8 MHz, as 10 MHz is the max for the radio module. 
-  SPI.begin();
-  delay(3000); 
-}
 
 
 /*--------------------------------------------------------------------------------------------------------------
