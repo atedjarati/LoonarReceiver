@@ -38,15 +38,6 @@ const int   GFSK_GPIO_2 =       7;
 const int   GFSK_GPIO_3 =       8;
 const int   GFSK_CS =           10;
 
-//const int   GFSK_SDN =          19;
-//const int   GFSK_IRQ =          16;
-//const int   GFSK_GATE =         22;
-//const int   GFSK_GPIO_0 =       21;
-//const int   GFSK_GPIO_1 =       20;
-//const int   GFSK_GPIO_2 =       17;
-//const int   GFSK_GPIO_3 =       18;
-//const int   GFSK_CS =           15;
-
 
 /***********************************************************************************************************************************************************************/
 

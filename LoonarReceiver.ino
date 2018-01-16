@@ -55,15 +55,10 @@ RH_RF24   rf24(GFSK_CS, GFSK_IRQ, GFSK_SDN);  // Radio module object
 void setup()
 {
   delay(1000);
-  Serial.println("Starting");
   setPinmodes();            // Initialize all the pinModes for every pin (i.e. input, output, etc).
-  Serial.println("After pinmode");
   RadioOff();               // Shut off power to the radio module. 
-  Serial.println("After radio off");
   RadioOn();                // Deliver power to the radio module.
-  Serial.println("After radio on");
   initializeRadio();        // Initialize and set up all radio parameters (frequency, data rate, etc). 
-  Serial.println("After init radio");
 }
 
 
@@ -92,21 +87,21 @@ void loop()
     }
     Serial.println();
   }
-  delay(1000);
-  char dat[100] = {0};
-  dat[0] = 'L';
-  dat[1] = 'a';
-  dat[2] = 'n';
-  dat[3] = 'd';
-  dat[4] = 'e';
-  dat[5] = 'd';
-  for (int i = 0; i < MESSAGE_LENGTH; i++)
-  {
-    //dat[i] = 'i';
-    data[i] = dat[i];
-  }
-  rf24.send(data,leng);
-  rf24.waitPacketSent(); 
+  //delay(1000);
+//  char dat[100] = "lolk rly are u srs dhajshdjsaryueikahdjkshajkdhuehajkshdjkahdjskhajkdas";
+//  dat[0] = 'L';
+//  dat[1] = 'a';
+//  dat[2] = 'n';
+//  dat[3] = 'd';
+//  dat[4] = 'e';
+//  dat[5] = 'd';
+//  for (int i = 0; i < MESSAGE_LENGTH; i++)
+//  {
+//    //dat[i] = 'i';
+//    data[i] = dat[i];
+//  }
+//  rf24.send(data,leng);
+//  rf24.waitPacketSent(); 
 }
 
 /*--------------------------------------------------------------------------------------------------------------
