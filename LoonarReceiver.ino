@@ -74,6 +74,8 @@ void setup()
 --------------------------------------------------------------------------------------------------------------*/
 void loop() 
 {
+  uint8_t doot[MESSAGE_LENGTH] = "Hello my name is Aria Tedjarati and I am testing the Loonar Radio!";
+
   uint8_t data[MESSAGE_LENGTH] = {0};
   uint8_t leng = MESSAGE_LENGTH;
   if (rf24.recv(data, &leng))
@@ -81,12 +83,33 @@ void loop()
     uint8_t lastRssi = (uint8_t)rf24.lastRssi();
     Serial.print("Got stuff at RSSI ");
     Serial.println(lastRssi);
-    for (int i = 0; i < MESSAGE_LENGTH; i++)
-    { 
-      Serial.print((char)data[i]); 
+    int errs = 0;
+    int bts = 0;
+    int len = 100;
+    for (int i = 0; i < len; i++)
+    {
+      Serial.print((char)data[i+0]); 
+      if (data[i+0] != doot[i]) {
+        Serial.print ("("); Serial.print((char)doot[i]); Serial.print(")");
+        uint8_t xr = data[i+0] ^ doot[i];
+        for (int kk=0; kk<8; kk++) {
+          if (xr & 1) bts++;
+          xr >>= 1;
+        }
+        errs++;
+      }
     }
     Serial.println();
+    Serial.println("byte error rate:");
+    Serial.println(((float)errs)/len*100);
+    Serial.println("bit error ratE");
+    Serial.println(((float)bts)/8./len*100);
+    Serial.println();
   }
+
+
+
+  
   //delay(1000);
 //  char dat[100] = "lolk rly are u srs dhajshdjsaryueikahdjkshajkdhuehajkshdjkahdjskhajkdas";
 //  dat[0] = 'L';
