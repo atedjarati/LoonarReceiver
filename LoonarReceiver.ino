@@ -79,10 +79,12 @@ void loop()
   if (rf24.recv(data, &leng))
   {
     Serial.print("transmission:");
-    for (int i = 0; i < MESSAGE_LENGTH; i++)
+    for (int i = 2; i < MESSAGE_LENGTH; i++)
     {
       Serial.print((char)data[i]);
     }
+    Serial.print((char)data[0]);
+    Serial.print((char)data[1]);
     Serial.println();
   }
 
@@ -90,7 +92,7 @@ void loop()
   int i = 0;
   while (Serial.available())
   {
-    send_data[i] = Serial.read();
+    send_data[i] = Serial.read(); 
     i++;
     delay(1);
   }

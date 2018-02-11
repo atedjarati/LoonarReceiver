@@ -42,7 +42,7 @@ const int   GFSK_CS =           10;
 /***********************************************************************************************************************************************************************/
 
 /********** CONSTANTS **********/  
-const int      MESSAGE_LENGTH =         100;                           // Message length in bytes. 
+const int      MESSAGE_LENGTH =         69;                           // Message length in bytes. 
 const double   FREQ =                   145.0;                        // Center frequency for radio in MHz. 
 
 #endif /* Configuration_h */
